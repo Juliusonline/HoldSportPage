@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HoldSportPage.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HoldSportPage.Pages
@@ -6,15 +7,22 @@ namespace HoldSportPage.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private IUserRepository _repo;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, IUserRepository repo)
         {
             _logger = logger;
+            _repo = repo;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (_repo is null || _repo.UserLoggedIn is null)
+            {
+                return RedirectToPage("/Login");
+            }
 
+            return Page();
         }
     }
 }

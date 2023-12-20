@@ -1,0 +1,38 @@
+﻿@page
+@model HoldSportPage.Pages.Medlemmer.EditKundeModel
+@{
+}
+<h1>Ændre et Medlemskab</h1>
+
+
+<form method="post">
+    <div class="form-group>">
+        <label>Medlemsnummer</label> : @Model.NytKundeNummer<br />
+        <input type="hidden" asp-for="@Model.NytKundeNummer" /><br />
+        <label class="text text-danger">@Model.ErrorMessage</label><br />
+        <br />
+
+
+        <label>Medlemsnavn</label><br />
+        <input class="form-control" asp-for="@Model.NytKundeNavn" /><br />
+        <span asp-validation-for="@Model.NytKundeNavn" class="text-danger"></span><br />
+
+
+        <label>Medlem telefon</label><br />
+        <input class="form-control" asp-for="@Model.NytKundetlf" /><br />
+
+        
+
+
+
+        @if (Model.Error)
+        {
+            <input type="submit" value="Ændre Ny Kunde" class="btn btn-secondary" asp-page-handler="Change" disabled />
+        }
+        else
+        {
+            <input type="submit" value="Ændre Ny Kunde" class="btn btn-success" asp-page-handler="Change" />
+        }
+        <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
+    </div>
+</form>

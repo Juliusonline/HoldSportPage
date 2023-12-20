@@ -1,0 +1,18 @@
+﻿@page
+@model HoldSportPage.Pages.CalculateFeeModel
+@{
+}
+<form method="post">
+    <label for="age">Alder:</label>
+    <input type="text" id="age" name="age" asp-for="Age" />
+
+    <label for="isStudent">Er du studerende?</label>
+    <input type="checkbox" id="isStudent" name="isStudent" asp-for="IsStudent" />
+
+    <input type="submit" value="Beregn kontingent" />
+</form>
+
+@if (Model != null && Model.Fee.HasValue)
+{
+    <p>Kontingent: @Model.Fee.Value</p>
+}

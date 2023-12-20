@@ -1,8 +1,13 @@
+
+using HoldSportPage.services;
+using HoldSportPage.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddSingleton<IUserRepository>(new UserRepository(true));
+builder.Services.AddSingleton<IKundeRepository>(new KundeRepositoryJson());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
